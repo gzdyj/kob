@@ -4,42 +4,55 @@ import RanklistIndexView from '../views/ranklist/RanklistIndexView'
 import RecordIndexView from '../views/record/RecordIndexView'
 import UserBotIndexView from '../views/user/bot/UserBotIndexView'
 import NotFound from '../views/error/NotFound'
+import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView'
+import UserAccountLoginView from '../views/user/account/UserAccountLoginView'
+
 
 
 
 const routes = [
   {
-    path:"/",
-    name:"home",
-    redirect:"/pk/"        
+    path: "/",
+    name: "home",
+    redirect: "/pk/"
   },
   {
-    path:"/pk/",
+    path: "/pk/",
     name: "pk_index",
-    component:PKIndexView,
+    component: PKIndexView,
   },
   {
-    path:"/record/",
+    path: "/record/",
     name: "record_index",
-    component:RecordIndexView,
+    component: RecordIndexView,
   },
   {
-    path:"/ranklist/",
+    path: "/ranklist/",
     name: "ranklist_index",
-    component:RanklistIndexView,
+    component: RanklistIndexView,
   },
   {
-    path:"/user/bot/",
+    path: "/user/bot/",
     name: "user_bot_index",
-    component:UserBotIndexView,
+    component: UserBotIndexView,
   },
   {
-    path:"/404/",
+    path: "/user/account/login/",
+    name: "user_account_login",
+    component: UserAccountLoginView,
+  },
+  {
+    path: "/user/account/register/",
+    name: "user_account_register",
+    component: UserAccountRegisterView,
+  },
+  {
+    path: "/404/",
     name: "404",
-    component:NotFound,
+    component: NotFound,
   },
   {
-    path:"/:catchAll(.*)",
+    path: "/:catchAll(.*)",
     redirect: "/404/"
   },
 
