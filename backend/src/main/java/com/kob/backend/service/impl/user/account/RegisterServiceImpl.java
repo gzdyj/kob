@@ -36,6 +36,10 @@ public class RegisterServiceImpl implements RegisterService {
             map.put("error_message", "用户名不能为空");
             return map;
         }
+        if (password.length() == 0 || confirmedPassword.length() == 0) {
+            map.put("error_message","密码不能为空");
+            return map;
+        }
 
         if (username.length() > 100) {
             map.put("error_message", "用户名长度不能大于100");
@@ -69,7 +73,7 @@ public class RegisterServiceImpl implements RegisterService {
         User user = new User(null, username, encodedPassword ,photo);
         userMapper.insert(user);
 
-        map.put("error_message", "sucess");
+        map.put("error_message", "success");
         return map;
 
 
