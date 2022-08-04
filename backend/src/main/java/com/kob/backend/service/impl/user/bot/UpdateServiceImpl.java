@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 @Service
 public class UpdateServiceImpl implements UpdateService {
     @Autowired
@@ -26,6 +27,7 @@ public class UpdateServiceImpl implements UpdateService {
 
         UserDetailsImpl loginUser = (UserDetailsImpl) authenticationToken.getPrincipal();
         User user = loginUser.getUser();
+
 
         int bot_id = Integer.parseInt(data.get("bot_id"));
 
