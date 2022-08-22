@@ -15,11 +15,12 @@ public class MatchingController { //设置放行地址
     @Autowired
     private MatchingService matchingService;
 
-    @PostMapping("/player/add")
+    @PostMapping("/player/add/")
     public String addPlayer(@RequestParam MultiValueMap<String, String> data) {
         Integer userId = Integer.parseInt(Objects.requireNonNull(data.getFirst("user_id")));
-        Integer reting = Integer.parseInt(Objects.requireNonNull(data.getFirst("rating")));
-        return matchingService.addPlayer(userId, reting);
+        Integer rating = Integer.parseInt(Objects.requireNonNull(data.getFirst("rating")));
+        Integer botId = Integer.parseInt(Objects.requireNonNull(data.getFirst("bot_id")));
+        return matchingService.addPlayer(userId, rating, botId);
     }
 
     @PostMapping("/player/remove/")

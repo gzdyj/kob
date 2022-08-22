@@ -27,6 +27,8 @@ export default {
         //对滴，字符串中有${}表达式操作的话，需要用`，不能用引号
         const socketUrl = `ws://127.0.0.1:3000/websocket/${store.state.user.token}/`;
 
+        store.commit("updateLoser", "none");
+
         let socket = null;
 
         onMounted(() => {
