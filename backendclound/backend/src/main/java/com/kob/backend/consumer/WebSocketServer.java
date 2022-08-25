@@ -32,7 +32,7 @@ public class WebSocketServer {
     //每个链接由Session维护
     private Session session = null;
     //UserMapper 不是单例的所以用static静态
-    private static UserMapper userMapper;
+    public static UserMapper userMapper;
     public static RecordMapper recordMapper;
     public static BotMapper botMapper;
     public static RestTemplate restTemplate;

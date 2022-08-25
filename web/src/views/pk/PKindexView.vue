@@ -16,6 +16,7 @@ import { onMounted, onUnmounted } from 'vue'
 import { useStore } from 'vuex'
 
 
+
 export default {
     components: {
         PlayGround,
@@ -28,6 +29,7 @@ export default {
         const socketUrl = `ws://127.0.0.1:3000/websocket/${store.state.user.token}/`;
 
         store.commit("updateLoser", "none");
+        store.commit("updateIsRecord", false);
 
         let socket = null;
 
@@ -76,7 +78,6 @@ export default {
                     //第一条蛇A死了
                     if (data.loser === "all" || data.loser === "A") {
                         snake0.status = "die";
-                        console.log(snake0.status);
                     }
                     //第二条蛇B死了
                     if (data.loser === "all" || data.loser === "B") {

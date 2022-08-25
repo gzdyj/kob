@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.kob.backend.consumer.WebSocketServer;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.Record;
+import com.kob.backend.pojo.User;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import sun.awt.windows.WBufferStrategy;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -179,7 +181,7 @@ public class Game extends Thread{
 
     private boolean nextStep() { //等待两名玩家下一步操作
         try {
-            Thread.sleep(200);
+            Thread.sleep(900);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -265,6 +267,7 @@ public class Game extends Thread{
         }
     }
 
+
     private String getMapString() {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < rows; i++) {
@@ -274,8 +277,27 @@ public class Game extends Thread{
         }
         return res.toString();
     }
-
+    private void updateUserRating(Player player, Integer rating) {
+        User user = WebSocketServer.userMapper.selectById(player.getId());
+        user.setRating(rating);
+        WebSocketServer.userMapper.updateById(user);
+    }
     private void saveToDatabase() {
+        //取出A和B的天梯积分
+        Integer ratingA = WebSocketServer.userMapper.selectById(playerA.getId()).getRating();
+        Integer ratingB = WebSocketServer.userMapper.selectById(playerB.getId()).getRating();
+
+        if ("A".equals(loser)) {
+            ratingA -= 2;
+            ratingB += 5;
+        } else if ("B".equals(loser)) {
+            ratingA += 5;
+            ratingB -= 2;
+        }
+
+        updateUserRating(playerA, ratingA);
+        updateUserRating(playerB, ratingB);
+
         Record record = new Record(
                 null,
                 playerA.getId(),
