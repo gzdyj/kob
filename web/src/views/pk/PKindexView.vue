@@ -3,6 +3,8 @@
     <PlayGround v-if="$store.state.pk.status === 'playing'" />
     <MatchGround v-if="$store.state.pk.status === 'matching'" />
     <ResultBorad v-if="$store.state.pk.loser != 'none'" />
+    <div class="user-color" v-if="$store.state.pk.status === 'playing' && parseInt($store.state.user.id) === parseInt($store.state.pk.a_id)">蓝方</div>
+    <div class="user-color1" v-if="$store.state.pk.status === 'playing' && parseInt($store.state.user.id) === parseInt($store.state.pk.b_id)">红方</div>
 </template>
 
 
@@ -26,7 +28,7 @@ export default {
     setup() {
         const store = useStore();
         //对滴，字符串中有${}表达式操作的话，需要用`，不能用引号
-        const socketUrl = `ws://127.0.0.1:3000/websocket/${store.state.user.token}/`;
+        const socketUrl = `wss://snake.zinzin.cc/websocket/${store.state.user.token}/`;
 
         store.commit("updateLoser", "none");
         store.commit("updateIsRecord", false);
@@ -105,4 +107,16 @@ export default {
 }
 </script>
 <style scoped>
+div.user-color {
+    text-align: center;
+    color:blue;
+    font-size: 30px;
+    font-weight: 600;
+}
+div.user-color1 {
+    text-align: center;
+    color:red;
+    font-size: 30px;
+    font-weight: 600;
+}
 </style>

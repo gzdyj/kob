@@ -206,7 +206,7 @@ export default {
 
         const refresh_bots = () => {
             $.ajax({
-                url: "http://localhost:3000/user/bot/getlist/",
+                url: "https://snake.zinzin.cc/api/user/bot/getlist/",
                 type: "GET",
                 headers: {
                     Authorization: "Bearer " + store.state.user.token,
@@ -220,7 +220,7 @@ export default {
 
         const remove_bot = (bot) => {
             $.ajax({
-                url: "http://localhost:3000/user/bot/remove/",
+                url: "https://snake.zinzin.cc/api/user/bot/remove/",
                 type: "POST",
                 headers: {
                     Authorization: "Bearer " + store.state.user.token,
@@ -239,7 +239,7 @@ export default {
         const update_bot = (bot) => {
             botadd.error_message = "";
             $.ajax({
-                url: "http://localhost:3000/user/bot/update/",
+                url: "https://snake.zinzin.cc/api/user/bot/update/",
                 type: "POST",
                 data: {
                     bot_id: bot.id,
@@ -269,7 +269,7 @@ export default {
         const add_bot = () => {
             botadd.error_message = "";
             $.ajax({
-                url: "http://localhost:3000/user/bot/add/",
+                url: "https://snake.zinzin.cc/api/user/bot/add/",
                 type: "POST",
                 data: {
                     title: botadd.title,

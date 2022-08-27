@@ -1,4 +1,4 @@
-package com.kob.backend.controller.bot;
+package com.kob.backend.controller.user.bot;
 
 import com.kob.backend.service.bot.AddService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class AddController {
     @Autowired
     private AddService addService;
 
-    @PostMapping("/user/bot/add/")
+    @PostMapping("/api/user/bot/add/")
     public Map<String, String> add (@RequestParam Map<String, String> data) {
         return addService.add(data);
     }

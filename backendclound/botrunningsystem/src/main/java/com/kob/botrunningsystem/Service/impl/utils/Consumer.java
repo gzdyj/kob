@@ -1,6 +1,5 @@
 package com.kob.botrunningsystem.Service.impl.utils;
 
-import com.kob.botrunningsystem.utils.BotInterface;
 
 import org.joor.Reflect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.UUID;
+import java.util.function.Supplier;
+
 @Component
 public class Consumer extends Thread{
     private Bot bot;
@@ -34,7 +38,7 @@ public class Consumer extends Thread{
     }
 
     private String addUid(String code, String uid) { //在code中的Bot类后添加uid
-        int k = code.indexOf(" implements com.kob.botrunningsystem.utils.BotInterface");
+        int k = code.indexOf(" implements java.util.function.Supplier<Integer>");
         return code.substring(0, k) + uid + code.substring(k);
 
     }
@@ -47,11 +51,20 @@ public class Consumer extends Thread{
         String uid = uuid.toString().substring(0, 8);
 
         // Reflect 反射的意思 compile汇编的意思 动态编译一个字符串代码
-        BotInterface botInterface = Reflect.compile(
+        Supplier<Integer> botInterface = Reflect.compile(
                 "com.kob.botrunningsystem.utils.Bot" + uid,
                 addUid(bot.getBotCode(), uid)
         ).create().get();
-        Integer direction = botInterface.nextMove(bot.getInput());
+
+        File file = new File("input.txt");
+        try (PrintWriter fout = new PrintWriter(file)){
+            fout.println(bot.getInput());
+            fout.flush();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        Integer direction = botInterface.get();
         System.out.println("move-direction: " + bot.getUserId() + " " + direction);
 
         MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
