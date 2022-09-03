@@ -22,18 +22,16 @@ export default {
 
 <style>
 body {
-
-  background-image: url("./assets/images/background1.jpg");
-  /* background-position: center center;
-  background-size: cover;
+  background-image: url(https://cos.zinzin.cc//images_1/20220830180219.png?imageMogr2/format/webp);
+  /* 背景图垂直、水平均居中 */
+  background-position: center center;
+  /* 背景图不平铺 */
   background-repeat: no-repeat;
-  width: 100vw; 
-  height: 100vw; */
-  width: 100vw;
-  height: 100vw;
-
+  /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+  background-attachment: fixed;
+  /* 让背景图基于容器大小伸缩 */
   background-size: cover;
-
-
+  /* 设置背景颜色，背景图加载过程中会显示背景色 */
+  background-color: #464646;
 }
 </style>
