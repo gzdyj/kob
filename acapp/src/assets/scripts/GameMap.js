@@ -34,7 +34,6 @@ export class GameMap extends AcGameObject {
     //创建墙
     create_walls() {
         const g = this.store.state.pk.gamemap;
-        console.log(g);
 
 
         for (let r = 0; r < this.rows; r++) {
@@ -55,7 +54,7 @@ export class GameMap extends AcGameObject {
             const [snake0, snake1] = this.snakes;
             const a_steps = this.store.state.record.a_steps;
             const b_steps = this.store.state.record.b_steps;
-            console.log(this.store.state.record);
+
             const loser = this.store.state.record.record_loser;
             //Interval 间隔
             const interval_id = setInterval(() => {

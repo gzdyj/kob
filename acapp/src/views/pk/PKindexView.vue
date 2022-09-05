@@ -51,7 +51,7 @@ export default {
             socket = new WebSocket(socketUrl);
 
             socket.onopen = () => {
-                console.log("connected!");
+
                 store.commit("updateSocket", socket);
             }
 
@@ -95,7 +95,7 @@ export default {
             }
 
             socket.onclose = () => {
-                console.log("disconnected!");
+
             }
         })
 
@@ -123,5 +123,19 @@ div.user-color1 {
     color:red;
     font-size: 30px;
     font-weight: 600;
+}
+div.user-color {
+    position: absolute;
+    bottom: 5vh;
+    width: 100%;
+    text-align: center;
+
+}
+div.user-color1 {
+    position: absolute;
+    bottom: 5vh;
+    width: 100%;
+    text-align: center;
+    
 }
 </style>

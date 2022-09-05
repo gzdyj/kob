@@ -49,11 +49,11 @@ export default {
                         data.success(resp);
                     } else {
                         data.error(resp);
-                        console.log("shibai");
+
                     }
                 },
                 error(resp) {
-                    console.log("shibai");
+
                     data.error(resp);
                 },
             });

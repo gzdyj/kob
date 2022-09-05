@@ -1,5 +1,5 @@
 <template>
-    <div class="container content-field">
+    <div class="content-field">
         <slot></slot>
         <div class="go-back" @click="click_go_back_handler">
             返回
@@ -39,7 +39,7 @@ div.go-back {
     user-select: none; 
 }
 div.go-back:hover {
-    scale: 1.2;
+    transform:scale(1.2);
     transition: 200ms;
 }
 </style>

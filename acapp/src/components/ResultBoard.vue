@@ -44,6 +44,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 div.result-board {
     height: 30vh;
@@ -51,7 +52,10 @@ div.result-board {
     background-color: rgba(50, 50, 50, 0.5);
     position: absolute;
     top: 30vh;
-    left: 35vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 div.result-board-text {
