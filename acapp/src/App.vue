@@ -25,7 +25,7 @@ import RecordIndexViewVue from "./views/record/RecordIndexView.vue"
 import RecordContentViewVue from "./views/record/RecordContentView.vue"
 import RanklistIndexViewVue from "./views/ranklist/RanklistIndexView.vue"
 import UserBotIndexViewVue from "./views/user/bot/UserBotIndexView.vue"
-
+import $ from 'jquery'
 
 export default {
   components: {
@@ -38,7 +38,20 @@ export default {
 
 },
   setup() {
+
     const store = useStore();
+
+    // $.ajax({
+    //   url: "https://app3277.acapp.acwing.com.cn/api/user/account/acwing/acapp/apply_code/",
+    //   type: "GET",
+    //   success: resp => {
+    //     if (resp.result === "success") {
+
+    //     }
+    //   }
+    // })
+
+
     const jwt_token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5MDJiNGY3NGNhYjc0MTI0ODc5NTgxNjRjNzZmYWYzOCIsInN1YiI6IjEiLCJpc3MiOiJzZyIsImlhdCI6MTY2MjE3MTA1NSwiZXhwIjoxNjYzMzgwNjU1fQ.EpYpxUAab6l6rZxardZ0K_gD-S3OvRrMBsANvA-_W3o";
         if (jwt_token) {
             store.commit("updateToken", jwt_token);

@@ -15,6 +15,11 @@
                     <div class="error_message">{{ error_message }}</div>
                     <button type="submit" class="btn btn-primary">提交</button>
                 </form>
+                <div style="text-align: center; margin-top: 20px; cursor: pointer;" @click="acwing_login">
+                    <img width="30" src="https://cdn.acwing.com/media/article/image/2022/09/06/1_32f001fd2d-acwing_logo.png" alt="">
+                    <br/>
+                    AcWing一键登陆
+                </div>
             </div>
         </div>
     </ContentField>
@@ -28,6 +33,7 @@ import ContentField from '../../../components/ContentField.vue'
 import { useStore } from 'vuex'
 import { ref } from 'vue'
 import router from '../../../router/index'
+import $ from 'jquery'
 
 export default {
     components: {
@@ -67,6 +73,7 @@ export default {
                     store.dispatch("getinfo", {
                         success() {
                             router.push({ name: 'home' });
+
                         }
                     })
                 },
@@ -76,11 +83,24 @@ export default {
             })
         }
 
+        const acwing_login = () => {
+            $.ajax({
+                url: "https://app3277.acapp.acwing.com.cn/api/user/account/acwing/web/apply_code/",
+                type: "GET",
+                success: resp => {
+                    if (resp.result === "success") {
+                        window.location.replace(resp.apply_code_url); //重定向回调地址
+                    }
+                }
+            })
+        }
+
         return {
             username,
             password,
             error_message,
             login,
+            acwing_login,
 
         }
     }
