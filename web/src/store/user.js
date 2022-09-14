@@ -30,6 +30,9 @@ export default {
         },
         updataPullinginfo(state, pulling_info) {
             state.pulling_info = pulling_info;
+        },
+        updatePhoto(state, photo) {
+            state.photo = photo;
         }
     },
     actions: {

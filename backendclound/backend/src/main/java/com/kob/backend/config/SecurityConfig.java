@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/user/account/acwing/acapp/receive_code",
                         "/api/user/account/acwing/web/apply_code/",
                         "/api/user/account/acwing/web/receive_code"
+
                 ).permitAll()
                 .antMatchers("/pk/start/game/","/pk/receive/bot/move/").hasIpAddress("127.0.0.1") //对本地ip放行
                 .antMatchers(HttpMethod.OPTIONS).permitAll()

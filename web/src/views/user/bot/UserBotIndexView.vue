@@ -4,10 +4,18 @@
             <div class="col-3">
                 <div class="card" style="margin-top: 25px;">
                     <div class="card-body">
-                        <img :src="$store.state.user.photo" alt="" style="width: 100%;">
+                        <label class="img1" for="file">
+                            <input type="file" style="display: none;" class="form-control" id="file"
+                                @click="upload_photo()" />
+                            <img :src="$store.state.user.photo" alt="" style="width: 100%;">
+                        </label>
+                        <hr>
+                        <button style="display: flex; justify-content: center; width: 100%;" id="upload"
+                            class="btn btn-light" type="button" @click="upload_photo()">点击头像更新</button>
                     </div>
                 </div>
             </div>
+
             <div class="col-9 ">
                 <div class="card" style="margin-top: 25px;">
                     <div class="card-header">
@@ -155,14 +163,21 @@ import { Modal } from 'bootstrap/dist/js/bootstrap'
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 
-export default {
 
+export default {
 
     components: {
         VAceEditor,
+
     },
 
+
+
+
     setup() {
+
+
+
 
 
         ace.config.set(
@@ -192,10 +207,14 @@ export default {
 
 
 
+
+
+
+
+
+
         const store = useStore();
         let bots = ref([]);
-
-
 
         const botadd = reactive({
             title: "",
@@ -297,7 +316,36 @@ export default {
             })
         }
 
+        const upload_photo = () => {
+            var formData = new FormData();
+            formData.append('file', $('#file')[0].files[0]);
+            $.ajax({
+                url: "https://snake.zinzin.cc/api/user/account/upload_photo/",
+                type: "POST",
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    Authorization: "Bearer " + store.state.user.token,
+                },
+                success(resp) {
+                    console.log(resp);
+                    store.commit("updatePhoto", resp);
+                },
+                error(resp) {
+                    console.log(resp);
+                }
+            })
+        }
+
         refresh_bots();
+
+
+
+
+
+
 
         return {
             bots,
@@ -307,8 +355,11 @@ export default {
             update_bot,
             VAceEditor,
             editorInit,
+            upload_photo,
         }
     }
+
+
 
 }
 </script>
@@ -322,4 +373,12 @@ div.error_message {
     width: 100%;
     height: 200px;
 }
+
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 0px;
+
+}
 </style>
+

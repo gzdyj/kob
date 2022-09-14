@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
     "vue": "^3.0.0",
+    "vue-core-image-upload": "^2.4.13",
     "vue-router": "^4.0.0-0",
     "vue3-ace-editor": "^2.2.2",
     "vuex": "^4.0.0-0"

@@ -100,14 +100,33 @@ export default {
             })
         }
 
+        // const update_photo = () => {
+        //     $.ajax({
+        //         url: "127.0.0.1:3000/api/user/account/upload_photo/",
+        //         type: "POST",
+        //         headers: {
+        //             Authorization: "Bearer " + store.state.user.token,
+        //         },
+        //         success(resp) {
+        //             console.log(resp);
+        //         },
+        //         error(resp) {
+        //             console.log(resp);
+        //         }
+        //     })
+        // }
+
+
+
         pull_page(current_page);
         //将后端的一维map转换成二维的map
- 
+
 
         return {
             users,
             pages,
             click_page,
+            // update_photo,
         }
 
     }
